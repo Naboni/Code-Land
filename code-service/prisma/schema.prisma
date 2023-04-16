@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+// ===================================================== code_service
+model Topic {
+  id String @id @default(uuid())
+
+  topic_name String
+  topic_type String @unique
+
+  question Question[]
+
+  createdAt DateTime @default(now())
+}
+
+model Question {
+  id String @id @default(uuid())
+
+  question_title        String @unique
+  question_prompt       String @db.VarChar(5000)
+  question_difficulty   String
+  sample_input          String
+  sample_output         String
+  optimal_complexity    String
+  
+  topic   Topic @relation(fields: [topicId], references: [id])
+  topicId String
+
+  discussion Discussion[]
+
+  createdAt DateTime @default(now())
+}
+
+model Discussion {
+  id String @id @default(uuid())
+
+  title       String
+  description String @db.VarChar(5000)
+
+  tag             String
+  user_id         String
+  seen_count      Int
+  up_vote_count   Int
+  down_vote_count Int
+  
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId String
+
+  comment Comment[]
+
+  createdAt DateTime @default(now())
+}
+
+model Comment {
+  id String @id @default(uuid())
+
+  text  String @db.VarChar(5000)
+
+  user_id      String
+  user_name    String
+  user_profile String
+  
+  discussion    Discussion @relation(fields: [discussionId], references: [id])
+  discussionId  String
+
+  createdAt DateTime @default(now())
+}
+
+// ===================================================== code_service
