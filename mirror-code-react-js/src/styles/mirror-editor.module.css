@@ -1,0 +1,13 @@
+.wrapper {
+  margin-top: 10px;
+}
+.prompt {
+  background-color: var(--dark-bg-500);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.editor {
+  min-width: 600px;
+}

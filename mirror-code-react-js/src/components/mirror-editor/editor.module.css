@@ -1,0 +1,40 @@
+.wrapper {
+  height: calc(100vh - 60px);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  height: 55px;
+  padding: 0 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--dark-bg);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: var(--dark-border);
+}
+.header h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .toggleBtn {
+  padding: 2px;
+  background-color: transparent;
+}
+
+.header .icon {
+  font-size: 30px;
+  font-weight: 900;
+}

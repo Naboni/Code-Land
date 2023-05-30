@@ -1,0 +1,60 @@
+{
+  "name": "realtime-editor",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@codemirror/lang-python": "^6.0.1",
+    "@codemirror/theme-one-dark": "^6.0.0",
+    "@emotion/react": "^11.9.3",
+    "@mantine/core": "^6.0.10",
+    "@mantine/form": "^6.0.10",
+    "@mantine/hooks": "^6.0.10",
+    "@mantine/notifications": "^6.0.10",
+    "@mantine/prism": "^6.0.10",
+    "@octokit/core": "^4.0.4",
+    "@tabler/icons-react": "^2.18.0",
+    "@tanstack/react-query": "^4.29.5",
+    "axios": "^1.4.0",
+    "codemirror": "^6.0.1",
+    "cuid": "^2.1.8",
+    "date-fns": "^2.29.1",
+    "firebase": "^9.9.1",
+    "query-string": "^7.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "react-split": "^2.0.14",
+    "socket.io-client": "^4.4.1",
+    "y-codemirror.next": "^0.3.2",
+    "y-websocket": "^1.4.3",
+    "yjs": "^13.5.41"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "npm run build && npm run server:prod",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
