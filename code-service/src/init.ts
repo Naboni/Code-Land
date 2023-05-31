@@ -135,7 +135,7 @@ async function addTopics() {
   }
 }
 
-addTopics();
-// addQuestions();
+// addTopics();
+addQuestions();
 
 prismaClient.$disconnect();

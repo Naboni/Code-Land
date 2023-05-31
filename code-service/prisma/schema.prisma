@@ -3,10 +3,26 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url = env("DATABASE_URL")
   relationMode = "prisma"
 }
+
+model User {
+  id String @id @default(uuid())
+
+  email String? @unique
+  name String?
+  birthday String?
+  gender String?
+  linkedin String?
+  github String?
+
+  favorite Favorite?
+  solutions Solution[]
+}
+
+
 // ===================================================== code_service
 model Topic {
   id String @id @default(uuid())
@@ -14,6 +30,7 @@ model Topic {
   topic_name String
   topic_type String @unique
 
+  solutions Solution[]
   question Question[]
 
   createdAt DateTime @default(now())
@@ -32,9 +49,13 @@ model Question {
   topic   Topic @relation(fields: [topicId], references: [id])
   topicId String
 
+  favorites Favorite[]
   discussion Discussion[]
+  solutions Solution[]
 
   createdAt DateTime @default(now())
+
+  @@index([topicId])
 }
 
 model Discussion {
@@ -55,6 +76,8 @@ model Discussion {
   comment Comment[]
 
   createdAt DateTime @default(now())
+
+  @@index([questionId])
 }
 
 model Comment {
@@ -70,6 +93,40 @@ model Comment {
   discussionId  String
 
   createdAt DateTime @default(now())
+
+  @@index([discussionId])
 }
 
 // ===================================================== code_service
+
+// ===================================================== interaction_service
+model Favorite {
+  id String @id @default(uuid())
+
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique
+
+  questions Question[]
+}
+
+model Solution {
+  id String @id @default(uuid())
+
+  solutionCode String
+  isDone Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+  userId String 
+  
+  question Question @relation(fields: [questionId], references: [id])
+  questionId String
+
+  topic Topic @relation(fields: [topicId], references: [id])
+  topicId String
+
+  @@index([userId])
+  @@index([topicId])
+  @@index([questionId])
+}
+
+// ===================================================== interaction_service
