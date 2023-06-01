@@ -128,7 +128,7 @@ export default function MirrorEditor() {
 
   return (
     <>
-      <EditorNav codeRef={codeRef} editorRef={editorRef} questionId={q} />
+      <EditorNav codeRef={codeRef} editorRef={editorRef} questionId={q} topicId={data?.topicId}/>
       <div className={classes.wrapper}>
         <Split
           style={{ display: 'flex' }}

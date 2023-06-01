@@ -1,6 +1,6 @@
-import { Discussion, PrismaClient } from '@prisma/client';
+import { Discussion } from '@prisma/client';
 
-const prismaClient = new PrismaClient();
+import prismaClient from '../../prisma';
 
 export async function getDiscussions(id: string) {
   return await prismaClient.discussion.findMany({

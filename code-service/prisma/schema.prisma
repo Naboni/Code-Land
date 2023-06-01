@@ -8,20 +8,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-model User {
-  id String @id @default(uuid())
-
-  email String? @unique
-  name String?
-  birthday String?
-  gender String?
-  linkedin String?
-  github String?
-
-  favorite Favorite?
-  solutions Solution[]
-}
-
 
 // ===================================================== code_service
 model Topic {
@@ -103,8 +89,7 @@ model Comment {
 model Favorite {
   id String @id @default(uuid())
 
-  user User @relation(fields: [userId], references: [id])
-  userId String @unique
+  userId String
 
   questions Question[]
 }
@@ -115,7 +100,6 @@ model Solution {
   solutionCode String
   isDone Boolean @default(false)
 
-  user User @relation(fields: [userId], references: [id])
   userId String 
   
   question Question @relation(fields: [questionId], references: [id])
@@ -124,7 +108,6 @@ model Solution {
   topic Topic @relation(fields: [topicId], references: [id])
   topicId String
 
-  @@index([userId])
   @@index([topicId])
   @@index([questionId])
 }

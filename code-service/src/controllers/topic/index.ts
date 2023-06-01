@@ -1,7 +1,20 @@
-import { PrismaClient } from '@prisma/client';
+import { Topic } from "@prisma/client";
 
-const prismaClient = new PrismaClient();
+import prismaClient from "../../prisma";
 
 export async function getTopics() {
   return await prismaClient.topic.findMany();
+}
+
+export async function postTopic(topic: Omit<Topic, 'id' | 'createdAt'>) {
+  return await prismaClient.topic.create({
+    data: topic,
+  });
+}
+
+export async function updateTopic(topic: Omit<Topic, 'createdAt'>) {
+  return await prismaClient.topic.update({
+    where: { id: topic.id },
+    data: topic,
+  });
 }

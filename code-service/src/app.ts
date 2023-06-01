@@ -8,6 +8,8 @@ import { topicRouter } from './routes/topic';
 import { commentRouter } from './routes/comment';
 import { questionRouter } from './routes/question';
 import { discussionRouter } from './routes/discussion';
+import { solutionRouter } from './routes/solution';
+import { favoriteRouter } from './routes/favorite';
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.use(topicRouter);
 app.use(commentRouter);
 app.use(questionRouter);
 app.use(discussionRouter);
+app.use(solutionRouter);
+app.use(favoriteRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
