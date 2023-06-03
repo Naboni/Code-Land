@@ -177,6 +177,20 @@ function HomeNav({ authUser, isLoading, handleSubmit }) {
       <div>
         <Logo src="/assets/dark-logo.png" />
       </div>
+      <div className={classes.menu}>
+        <Link to="/questions">
+          Questions
+        </Link>
+        {authUser && <Link to="/favorites">
+          Favorites
+        </Link>}
+        <Link to="/topics">
+          Topics
+        </Link>
+        {authUser && <Link to="/progress">
+          Progress
+        </Link>}
+      </div>
       {authUser ? (
         <Profile />
       ) : (

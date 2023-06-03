@@ -20,6 +20,9 @@ import { AuthUserContext } from './context/authUserContext';
 import useFirebaseAuth from './hooks/useFirebaseAuth';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Topics } from './pages/topics';
+import Favorites from './pages/favorites';
+import { Progress } from './pages/progress';
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -38,6 +41,9 @@ function App() {
               <Route path="/topic-sorting" element={<Sorting />}></Route>
 
               <Route path="/questions" element={<Questions />}></Route>
+              <Route path="/topics" element={<Topics />}></Route>
+              <Route path="/favorites" element={<Favorites />}></Route>
+              <Route path="/progress" element={<Progress />}></Route>
               <Route path="/mirror-editor" element={<MirrorEditor />}></Route>
 
               <Route path="/discussion" element={<Discussion />}></Route>
