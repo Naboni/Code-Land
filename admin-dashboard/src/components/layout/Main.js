@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Layout, Drawer, Affix } from "antd";
 import Sidenav from "./Sidenav";
 import Header from "./Header";
@@ -109,7 +109,10 @@ function Main({ children }) {
             />
           </AntHeader>
         )}
-        <Content className="content-ant">{children}</Content>
+        <Content className="content-ant">
+          {/* {children} */}
+          <Outlet />
+          </Content>
         <Footer />
       </Layout>
     </Layout>

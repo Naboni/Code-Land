@@ -35,9 +35,45 @@ import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
+import { useAuth } from "../hooks/useAuth";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+
+function useTopics() {
+  return useQuery({
+    queryKey: ['topics'],
+    queryFn: async () => {
+      const { data } = await axios.get('http://localhost:3001/topics');
+      return data.topics;
+    },
+  });
+}
+function useSolutions() {
+  return useQuery({
+    queryKey: ['solutions'],
+    queryFn: async () => {
+      const { data } = await axios.get('http://localhost:3001/solutions');
+      return data.solutions;
+    },
+  });
+}
+function useQuestions() {
+  return useQuery({
+    queryKey: ['questions'],
+    queryFn: async () => {
+      const { data } = await axios.get('http://localhost:3001/questions');
+      return data.questions;
+    },
+  });
+}
 
 function Home() {
   const { Title, Text } = Typography;
+  const { authUser, loading } = useAuth();
+  const { status: topicStatus, data: topicData } = useTopics();
+  const { status: solutionStatus, data: solutionData } = useSolutions();
+  const { status: questionStatus, data: questionData } = useQuestions();
+  console.log(authUser)
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
@@ -131,29 +167,29 @@ function Home() {
   ];
   const count = [
     {
-      today: "Today’s Sales",
-      title: "$53,000",
+      today: "Questions",
+      title: questionData?.length,
       persent: "+30%",
       icon: dollor,
       bnb: "bnb2",
     },
     {
-      today: "Today’s Users",
-      title: "3,200",
+      today: "Solutions",
+      title: solutionData?.length,
       persent: "+20%",
       icon: profile,
       bnb: "bnb2",
     },
     {
-      today: "New Clients",
-      title: "+1,200",
+      today: "Topics",
+      title: topicData?.length,
       persent: "-20%",
       icon: heart,
       bnb: "redtext",
     },
     {
-      today: "New Orders",
-      title: "$13,200",
+      today: "Users",
+      title: "5",
       persent: "10%",
       icon: cart,
       bnb: "bnb2",
@@ -329,6 +365,7 @@ function Home() {
       }
     },
   };
+console.log("HOME", authUser)
 
   return (
     <>

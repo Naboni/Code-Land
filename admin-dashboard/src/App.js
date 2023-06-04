@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Tables from "./pages/Tables";
 import Profile from "./pages/Profile";
@@ -10,26 +10,28 @@ import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { AuthUserContext } from "./context/authUserContext";
+import useFirebaseAuth from "./hooks/useFirebaseAuth";
+import Login from "./pages/Login";
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="App">
+      <AuthUserContext.Provider value={useFirebaseAuth()}>
         <BrowserRouter>
-          <Switch>
-            <Route path="/sign-up" exact component={SignUp} />
-            <Route path="/sign-in" exact component={SignIn} />
-            <Main>
-              <Route exact path="/dashboard" component={Home} />
-              <Route exact path="/tables" component={Tables} />
-              <Route exact path="/profile" component={Profile} />
-              <Redirect from="*" to="/dashboard" />
-            </Main>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Main />}>
+              <Route index element={<Home />}/>
+              <Route index path="/dashboard" element={<Home />}/>
+              <Route path="/tables" element={<Tables />}/>
+              <Route path="/profile" element={<Profile />}/>
+            </Route>
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
         </BrowserRouter>
-      </div>
+      </AuthUserContext.Provider>
     </QueryClientProvider>
   );
 }
