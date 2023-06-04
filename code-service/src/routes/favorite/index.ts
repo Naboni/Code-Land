@@ -29,8 +29,7 @@ router.get("/favorite/:id", async (req: Request, res: Response) => {
 router.get("/favorite/user/:userId", async (req: Request, res: Response) => {
   const { userId } = req.params;
 
-  const favorite = await getUserFavorite(userId);
-
+  const favorite = await getUserFavorite(userId).catch(console.log);
   res.json({ favorite });
 });
 

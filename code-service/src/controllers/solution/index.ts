@@ -22,6 +22,15 @@ export async function getSolution(id: string) {
   });
 }
 
+export async function getUserSolution(userId: string) {
+  return await prismaClient.solution.findMany({
+    where: { userId },
+    include: {
+      topic: true,
+    },
+  });
+}
+
 export async function getUserSolutionForQuestion(
   userId: string,
   questionId: string

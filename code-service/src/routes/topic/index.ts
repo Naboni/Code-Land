@@ -1,11 +1,19 @@
 import express, { Request, Response } from 'express';
 
-import { getTopics, postTopic, updateTopic } from '../../controllers/topic';
+import { getTopicByUserSolution, getTopics, postTopic, updateTopic } from '../../controllers/topic';
 
 const router = express.Router();
 
 router.get('/topics', async (req: Request, res: Response) => {
   const topics = await getTopics();
+
+  res.json({ topics });
+});
+
+router.get('/topics/user/:userId', async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  
+  const topics = await getTopicByUserSolution(userId);
 
   res.json({ topics });
 });

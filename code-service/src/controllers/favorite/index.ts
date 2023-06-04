@@ -5,7 +5,11 @@ import prismaClient from "../../prisma";
 export async function getFavorites() {
   return await prismaClient.favorite.findMany({
     include: {
-      questions: true,
+      questions: {
+        include: {
+          topic: true,
+        },
+      },
     },
   });
 }
@@ -20,7 +24,11 @@ export async function getUserFavorite(userId: string) {
   return await prismaClient.favorite.findMany({
     where: { userId },
     include: {
-      questions: true,
+      questions: {
+        include: {
+          topic: true,
+        }
+      },
     },
   });
 }

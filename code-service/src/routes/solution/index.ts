@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 
-import { getSolution, getSolutions, getUserSolutionForQuestion, postSolution, updateSolution } from '../../controllers/solution';
+import { getSolution, getSolutions, getUserSolution, getUserSolutionForQuestion, postSolution, updateSolution } from '../../controllers/solution';
 
 const router = express.Router();
 
@@ -15,6 +15,13 @@ router.get('/solution/:id', async (req: Request, res: Response) => {
 
   const solution = await getSolution(id);
 
+  res.json({ solution });
+});
+
+router.get("/solution/user/:userId", async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  const solution = await getUserSolution(userId).catch(console.log);
   res.json({ solution });
 });
 
