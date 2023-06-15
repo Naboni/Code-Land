@@ -18,7 +18,7 @@ export default function Recursion() {
             repeatedly, it is called iteration.
             
           </p>
-          <VisualizerOverlay imageUrl={'/assets/recursion1.png'} visualizerUrl={'https://recursion.vercel.app/'} />
+          <VisualizerOverlay imageUrl={'/assets/recursion1.png'} visualizerUrl={'http://localhost:3007/'} />
 
           <br />
           <img src={'/assets/recursion.png'} width="100%" alt="recursion" />
