@@ -1,0 +1,25 @@
+.cardWrapper {
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  text-transform: capitalize;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardWrapperLight {
+  color: #777777;
+  background-color: var(--card-body-light);
+
+  border: #777777 4px solid;
+}
+.cardWrapperDark {
+  color: white;
+  background-color: var(--card-body-dark);
+
+  border: #777777 4px solid;
+}
