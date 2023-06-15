@@ -34,14 +34,15 @@ router.get('/solution/:userId/:questionId', async (req: Request, res: Response) 
 });
 
 router.post('/solution', async (req: Request, res: Response) => {
-    const { solutionCode, questionId, userId, topicId } = req.body;
+    const { solutionCode, questionId, userId, topicId, official } = req.body;
   
     const solution = await postSolution({
       isDone: true,
       solutionCode,
       questionId,
       userId,
-      topicId
+      topicId,
+      official
     });
   
     res.json({ solution });

@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -44,8 +46,28 @@ const data = [
     amt: 2100,
   },
 ];
+  
+  function useTopics() {
+    return useQuery({
+      queryKey: ["topics"],
+      queryFn: async () => {
+        const { data } = await axios.get("http://localhost:3001/topics");
+        return data.topics;
+      },
+    });
+  }
+  
 
 function TopicQuestionChart() {
+    const { status: topicStatus, data: topicData, refetch } = useTopics();
+  const data = topicData
+  ?.filter((topic) => topic?.question.length > 0)
+  ?.map((topic) => {
+    return {
+        name: topic?.topic_name,
+        questions: topic?.question.length
+    }
+    })
   return (
     <ResponsiveContainer width="100%" height="100%">
         <BarChart
@@ -59,13 +81,12 @@ function TopicQuestionChart() {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid vertical={false} />
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip />
+          <Tooltip cursor={false}/>
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          <Bar dataKey="uv" fill="#82ca9d" />
+          <Bar dataKey="questions" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
   )
