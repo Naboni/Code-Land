@@ -36,13 +36,14 @@ function useSolutions(userId) {
   });
 }
 
-
 export function Progress() {
   const { authUser, loading } = useAuth();
 
   const { status, data } = useTopics(authUser?.uid);
-  const { status: solutionStatus, data: solutionData } = useSolutions(authUser?.uid);
-  console.log("a",solutionData)
+  const { status: solutionStatus, data: solutionData } = useSolutions(
+    authUser?.uid
+  );
+  console.log("a", solutionData);
   if (loading) return <CenterLoading height="100vh" width="100vw" />;
 
   return (
@@ -64,24 +65,23 @@ export function Progress() {
             <h3>Error: Something went wrong</h3>
           ) : (
             <div>
-
-            <div className={classes.topics}>
-              {data?.map((t, idx) => (
-                <TopicItem key={idx} topic={t} />
+              <div className={classes.topics}>
+                {data?.map((t, idx) => (
+                  <TopicItem key={idx} topic={t} />
                 ))}
-            </div>
-          <div style={{height: "100px", margin: "50px"}}>
-            <div style={{  padding: "9px 12px 0px 12px" }}>
-              <div style={{ fontWeight: 600 }}>
-                {solutionData.length} Submissions in the last 365 days
               </div>
-              <hr />
-              <div style={{ padding: "12px" }}>
-                <Heatmap solutions={solutionData}/>
-              </div>
-            </div>
-          </div>
+              <div style={{ height: "100px", margin: "50px" }}>
+                <div style={{ padding: "9px 12px 0px 12px" }}>
+                  <div style={{ fontWeight: 600 }}>
+                    {solutionData.length} Submissions in the last 365 days
+                  </div>
+                  <hr />
+                  <div style={{ padding: "12px" }}>
+                    <Heatmap solutions={solutionData} />
+                  </div>
                 </div>
+              </div>
+            </div>
           )}
         </CenterContent>
       </div>
@@ -108,7 +108,7 @@ export function TopicItem({ topic }) {
   return (
     <Link to={`/topic-${topic.topic_name.toLowerCase()}`}>
       <div className={classes.progressWrapper}>
-        <h5 style={{padding: "0 0 0 10px"}}>{topic.topic_name}</h5>
+        <h5 style={{ padding: "0 0 0 10px" }}>{topic.topic_name}</h5>
         <CircularProgress status={completed} percentage={percentage} />
       </div>
     </Link>
@@ -120,7 +120,7 @@ function CircularProgress({ status, percentage }) {
     <>
       {!status ? (
         <RingProgress
-        size={70}
+          size={70}
           sections={[{ value: percentage, color: "blue" }]}
           label={
             <Text color="blue" weight={700} align="center" size="sm">
@@ -130,7 +130,7 @@ function CircularProgress({ status, percentage }) {
         />
       ) : (
         <RingProgress
-        size={70}
+          size={70}
           sections={[{ value: 100, color: "teal" }]}
           label={
             <Center>
