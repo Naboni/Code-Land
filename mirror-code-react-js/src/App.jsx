@@ -23,6 +23,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Topics } from './pages/topics';
 import Favorites from './pages/favorites';
 import { Progress } from './pages/progress';
+import Recursion from './pages/topics/recursion';
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -39,6 +40,7 @@ function App() {
               <Route path="/topic-array" element={<Array />}></Route>
               <Route path="/topic-graph" element={<Graph />}></Route>
               <Route path="/topic-sorting" element={<Sorting />}></Route>
+              <Route path="/topic-recursion" element={<Recursion />}></Route>
 
               <Route path="/questions" element={<Questions />}></Route>
               <Route path="/topics" element={<Topics />}></Route>

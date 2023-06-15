@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 
 import {
@@ -22,11 +20,13 @@ import {
   StarOutlined,
   TwitterOutlined,
   FacebookFilled,
+  LogoutOutlined,
 } from "@ant-design/icons";
 
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
+import { useAuth } from "../../hooks/useAuth";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -135,43 +135,23 @@ const clockicon = [
   </svg>,
 ];
 
-const data = [
-  {
-    title: "New message from Sophie",
-    description: <>{clockicon} 2 days ago</>,
-
-    avatar: avtar,
-  },
-  {
-    title: "New album by Travis Scott",
-    description: <>{clockicon} 2 days ago</>,
-
-    avatar: <Avatar shape="square">{wifi}</Avatar>,
-  },
-  {
-    title: "Payment completed",
-    description: <>{clockicon} 2 days ago</>,
-    avatar: <Avatar shape="square">{credit}</Avatar>,
-  },
-];
-
-const menu = (
-  <List
-    min-width="100%"
-    className="header-notifications-dropdown "
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={(item) => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<Avatar shape="square" src={item.avatar} />}
-          title={item.title}
-          description={item.description}
-        />
-      </List.Item>
-    )}
-  />
-);
+// const menu = (
+//   <List
+//     min-width="100%"
+//     className="header-notifications-dropdown "
+//     itemLayout="horizontal"
+//     dataSource={data}
+//     renderItem={(item) => (
+//       <List.Item>
+//         <List.Item.Meta
+//           avatar={<Avatar shape="square" src={item.avatar} />}
+//           title={item.title}
+//           description={item.description}
+//         />
+//       </List.Item>
+//     )}
+//   />
+// );
 
 const logsetting = [
   <svg
@@ -258,6 +238,21 @@ function Header({
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
 
+  const { authUser, signOut } = useAuth();
+
+  useEffect(() => {
+    if (!authUser) {
+      window.location.href = "/login";
+    }
+  }, []);
+
+  const handleLogout = () => {
+    window.location.href = "/login";
+    signOut();
+  };
+
+  console.log("displayName", authUser?.displayName);
+
   return (
     <>
       <div className="setting-drwer" onClick={showDrawer}>
@@ -283,18 +278,13 @@ function Header({
           </div>
         </Col>
         <Col span={24} md={18} className="header-control">
-          <Badge size="small" count={4}>
-            <Dropdown overlay={menu} trigger={["click"]}>
-              <a
-                href="#pablo"
-                className="ant-dropdown-link"
-                onClick={(e) => e.preventDefault()}
-              >
-                {bell}
-              </a>
-            </Dropdown>
-          </Badge>
-          
+          <div onClick={()=>handleLogout()}>
+
+            <Avatar style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}>
+              A
+            </Avatar>
+          </div>
+
           <Input
             className="header-search"
             placeholder="Type here..."
