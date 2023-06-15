@@ -1,0 +1,28 @@
+.wrapper {
+  height: 50px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--navbar-bg);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 35px;
+}
+
+.logo h1 {
+  margin: 0px;
+  margin-top: -5px;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: white;
+  
+}
