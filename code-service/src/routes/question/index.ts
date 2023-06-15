@@ -20,9 +20,13 @@ router.get('/question/:id', async (req: Request, res: Response) => {
 
 router.post('/question', async (req: Request, res: Response) => {
 
-  const question = await postQuestion(req.body);
-
-  res.json({ question });
+ try {
+   const question = await postQuestion(req.body);
+ 
+   res.json({ question });
+ } catch (error) {
+  console.log("Error: ",error)
+ }
 });
 
 router.put('/question', async (req: Request, res: Response) => {

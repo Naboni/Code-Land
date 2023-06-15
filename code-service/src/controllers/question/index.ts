@@ -4,11 +4,10 @@ import prismaClient from "../../prisma";
 export async function getQuestions() {
   return await prismaClient.question.findMany({
     include: {
-      topic: {
-        select: {
-          topic_type: true,
-        },
-      },
+      discussion: true,
+      solutions: true,
+      topic: true,
+      favorites: true,
     },
   });
 }

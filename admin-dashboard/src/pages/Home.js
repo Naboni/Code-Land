@@ -365,7 +365,6 @@ function Home() {
       }
     },
   };
-console.log("HOME", authUser)
 
   return (
     <>

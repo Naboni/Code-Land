@@ -99,6 +99,7 @@ model Solution {
 
   solutionCode String
   isDone Boolean @default(false)
+  official Boolean @default(false)
 
   userId String 
   

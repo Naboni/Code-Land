@@ -3,7 +3,12 @@ import { Topic } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 export async function getTopics() {
-  return await prismaClient.topic.findMany();
+  return await prismaClient.topic.findMany({
+    include: {
+      question: true,
+      solutions: true
+    }
+  });
 }
 
 export async function getTopicByUserSolution(userId: string) {
