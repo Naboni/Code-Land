@@ -4,7 +4,7 @@ import { getTopicByUserSolution, getTopics, postTopic, updateTopic } from '../..
 
 const router = express.Router();
 
-router.get('/topics', async (req: Request, res: Response) => {
+router.get('/topics', async (req: Request, res: Response) => {  
   const topics = await getTopics();
 
   res.json({ topics });

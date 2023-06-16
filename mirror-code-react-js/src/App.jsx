@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Array from './pages/topics/array';
 import Graph from './pages/topics/graph';
+import Stack from './pages/topics/stack';
+import Stringg from './pages/topics/string';
 import Questions from './pages/questions';
 import Discussion from './pages/discussion';
 import Sorting from './pages/topics/sorting';
@@ -39,6 +41,8 @@ function App() {
               <Route path="/topic-array" element={<Array />}></Route>
               <Route path="/topic-graph" element={<Graph />}></Route>
               <Route path="/topic-sorting" element={<Sorting />}></Route>
+              <Route path="/topic-stack" element={<Stack />}></Route>
+              <Route path="/topic-string" element={<Stringg />}></Route>
 
               <Route path="/questions" element={<Questions />}></Route>
               <Route path="/topics" element={<Topics />}></Route>
