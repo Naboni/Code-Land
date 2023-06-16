@@ -41,7 +41,8 @@ router.post('/solution', async (req: Request, res: Response) => {
       solutionCode,
       questionId,
       userId,
-      topicId
+      topicId,
+      official
     });
   
     res.status(201).json({ solution });
