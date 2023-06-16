@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Button } from "@mantine/core";
-import { Link } from "react-router-dom";
-import { BsGithub } from "react-icons/bs";
-import { AiFillSave } from "react-icons/ai";
+import { Button } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { BsGithub } from 'react-icons/bs';
+import { AiFillSave } from 'react-icons/ai';
 
 // styles
-import classes from "./editor-nav.module.css";
+import classes from './editor-nav.module.css';
 // components
-import Logo from "../logo";
-import Profile from "../profile";
-import CodeLang from "../code-lang";
-import SaveGistModal from "./save-gist-modal";
+import Logo from '../logo';
+import Profile from '../profile';
+import CodeLang from '../code-lang';
+import SaveGistModal from './save-gist-modal';
 
-import axios from "axios";
-import { useAuth } from "../../hooks/useAuth";
-import { displayNotification } from "../../utils/displayNotification";
+import axios from 'axios';
+import { useAuth } from '../../hooks/useAuth';
+import { displayNotification } from '../../utils/displayNotification';
 
-export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
+export default function EditorNav({ codeRef, editorRef, questionId, topicId, optionRef }) {
   const [isOpened, setIsOpened] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -36,7 +36,7 @@ export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
               <b>Success!</b> Code submitted.
             </p>
           ),
-          color: "green",
+          color: 'green',
         });
       })
       .catch((_) => {
@@ -46,7 +46,7 @@ export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
               <b>Error!</b> Something went wrong.
             </p>
           ),
-          color: "red",
+          color: 'red',
         });
       })
       .finally(() => {
@@ -57,9 +57,10 @@ export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
 
   return (
     <div className={classes.wrapper}>
-      <Logo src={"/assets/logo.png"} />
+      <Logo src={'/assets/logo.png'} />
       <div className={classes.space} />
-      <CodeLang />
+      <CodeLang optionRef={optionRef} />
+
       {questionId && (
         <Link to={`/discussion?q=${questionId}`}>
           <Button>Discuss</Button>
@@ -67,10 +68,11 @@ export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
       )}
       <div className={classes.rightMenu}>
         <Button
+          loading={isSubmitting}
           leftIcon={
             <AiFillSave
               style={{
-                fontSize: "20px",
+                fontSize: '20px',
               }}
             />
           }
@@ -90,7 +92,7 @@ export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
           leftIcon={
             <BsGithub
               style={{
-                fontSize: "20px",
+                fontSize: '20px',
               }}
             />
           }
@@ -99,12 +101,7 @@ export default function EditorNav({ codeRef, editorRef, questionId, topicId }) {
         >
           Save Code
         </Button>
-        <SaveGistModal
-          codeRef={codeRef}
-          editorRef={editorRef}
-          isOpened={isOpened}
-          setIsOpened={setIsOpened}
-        />
+        <SaveGistModal codeRef={codeRef} editorRef={editorRef} isOpened={isOpened} setIsOpened={setIsOpened} />
         <Profile />
       </div>
     </div>

@@ -53,6 +53,7 @@ export default function MirrorEditor() {
   const socketRef = useRef();
   const codeRef = useRef('');
   const editorRef = useRef('');
+  const optionRef = useRef('py');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -128,7 +129,7 @@ export default function MirrorEditor() {
 
   return (
     <>
-      <EditorNav codeRef={codeRef} editorRef={editorRef} questionId={q} topicId={data?.topicId}/>
+      <EditorNav optionRef={optionRef} codeRef={codeRef} editorRef={editorRef} questionId={q} topicId={data?.topicId}/>
       <div className={classes.wrapper}>
         <Split
           style={{ display: 'flex' }}
@@ -147,7 +148,7 @@ export default function MirrorEditor() {
             <Room roomUsers={roomUsers} room={r} />
           </div>
           <div className={classes.editor}>
-            <Editor socketRef={socketRef} room={r} userName={u} codeRef={codeRef} />
+            <Editor optionRef={optionRef} socketRef={socketRef} room={r} userName={u} codeRef={codeRef} />
           </div>
         </Split>
       </div>
