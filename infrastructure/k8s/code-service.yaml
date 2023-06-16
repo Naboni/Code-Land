@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-service-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-service
+  template:
+    metadata:
+      labels:
+        app: code-service
+    spec:
+      containers:
+        - name: code-service
+          image: myonim/code-mirror-code-service
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-service-srv
+spec:
+  selector:
+    app: code-service
+  ports:
+    - name: code-service
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

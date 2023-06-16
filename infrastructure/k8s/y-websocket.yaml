@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: y-websocket-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: y-websocket
+  template:
+    metadata:
+      labels:
+        app: y-websocket
+    spec:
+      containers:
+        - name: y-websocket
+          image: myonim/code-mirror-y-websocket
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: y-websocket-srv
+spec:
+  selector:
+    app: y-websocket
+  ports:
+    - name: y-websocket
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

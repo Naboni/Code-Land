@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mirror-code-front-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mirror-code-front
+  template:
+    metadata:
+      labels:
+        app: mirror-code-front
+    spec:
+      containers:
+        - name: mirror-code-front
+          image: myonim/code-mirror-mirror-code-front
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mirror-code-front-srv
+spec:
+  selector:
+    app: mirror-code-front
+  ports:
+    - name: mirror-code-front
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
