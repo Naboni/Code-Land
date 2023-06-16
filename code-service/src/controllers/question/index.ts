@@ -30,3 +30,10 @@ export async function updateQuestion(question: Omit<Question, 'createdAt'>) {
     data: question,
   });
 }
+
+export async function deleteQuestion(id: string) {
+  console.log({id})
+  return await prismaClient.question.delete({
+    where: { id },
+  });
+}

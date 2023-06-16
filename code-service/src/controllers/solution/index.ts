@@ -54,3 +54,9 @@ export async function updateSolution(solution: Pick<Solution, "id" | "solutionCo
     data: solution,
   });
 }
+
+export async function deleteSolution(id: string) {
+  return await prismaClient.solution.delete({
+    where: { id },
+  });
+}
