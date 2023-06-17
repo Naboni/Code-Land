@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Array from './pages/topics/array';
 import Graph from './pages/topics/graph';
+import Tree from './pages/topics/tree';
 import Stack from './pages/topics/stack';
 import Stringg from './pages/topics/string';
 import Questions from './pages/questions';
@@ -25,6 +26,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Topics } from './pages/topics';
 import Favorites from './pages/favorites';
 import { Progress } from './pages/progress';
+import Recursion from './pages/topics/recursion';
+import BackTracking from './pages/topics/backTracking';
+import TopologicalSorting from './pages/topics/topologicalSorting';
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -43,6 +47,9 @@ function App() {
               <Route path="/topic-sorting" element={<Sorting />}></Route>
               <Route path="/topic-stack" element={<Stack />}></Route>
               <Route path="/topic-string" element={<Stringg />}></Route>
+              <Route path="/topic-tree" element={<Tree />}></Route>
+              <Route path="/topic-backtracking" element={<BackTracking />}></Route>
+              <Route path="/topic-topological%20sort" element={<TopologicalSorting />}></Route>
 
               <Route path="/questions" element={<Questions />}></Route>
               <Route path="/topics" element={<Topics />}></Route>

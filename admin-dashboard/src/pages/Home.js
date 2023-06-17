@@ -38,6 +38,7 @@ import card from "../assets/images/info-card-1.jpg";
 import { useAuth } from "../hooks/useAuth";
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import TopicQuestionChart from "../components/chart/TopicQuestionChart";
 
 function useTopics() {
   return useQuery({
@@ -365,7 +366,6 @@ function Home() {
       }
     },
   };
-console.log("HOME", authUser)
 
   return (
     <>
@@ -403,7 +403,10 @@ console.log("HOME", authUser)
         <Row gutter={[24, 0]}>
           <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
-              <Echart />
+              {/* <Echart /> */}
+              <div style={{width: "100%", height: "400px"}}>
+              <TopicQuestionChart/>
+              </div>
             </Card>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">

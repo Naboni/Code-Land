@@ -1,5 +1,5 @@
 import { Button, Alert } from "antd";
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 
 import { LoginOutlined } from "@ant-design/icons";
@@ -11,6 +11,12 @@ export default function Login() {
   const navigate = useNavigate();
   const { authUser, loading } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (authUser) {
+      navigate('/dashboard');
+    }
+  }, [authUser]);
 
     const handleSubmit = async (actionNumber) => {
         setIsLoading(true);

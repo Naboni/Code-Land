@@ -6,12 +6,8 @@ import e from "cors";
 export async function getSolutions() {
   return await prismaClient.solution.findMany({
     include: {
-      question: {
-        select: {
-          sample_input: true,
-          sample_output: true,
-        },
-      },
+      question: true,
+      topic: true,
     },
   });
 }

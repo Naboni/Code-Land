@@ -240,12 +240,12 @@
 
 .progressWrapper {
   width: 230px;
-  height: 200px;
+  /* height: 100px; */
 
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   background-color: var(--dark-bg);
 

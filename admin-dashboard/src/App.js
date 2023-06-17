@@ -1,6 +1,5 @@
 import { Switch, Route, BrowserRouter, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Tables from "./pages/Tables";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -13,6 +12,9 @@ import { useState } from "react";
 import { AuthUserContext } from "./context/authUserContext";
 import useFirebaseAuth from "./hooks/useFirebaseAuth";
 import Login from "./pages/Login";
+import Questions from "./pages/Questions";
+import Topics from "./pages/Topics";
+import Solutions from "./pages/Solutions";
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -25,7 +27,9 @@ function App() {
             <Route path="/" element={<Main />}>
               <Route index element={<Home />}/>
               <Route index path="/dashboard" element={<Home />}/>
-              <Route path="/tables" element={<Tables />}/>
+              <Route path="/questions" element={<Questions/>}/>
+              <Route path="/topics" element={<Topics/>}/>
+              <Route path="/solutions" element={<Solutions/>}/>
               <Route path="/profile" element={<Profile />}/>
             </Route>
             <Route path="/login" element={<Login />}></Route>

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Layout, Drawer, Affix } from "antd";
+import { Layout, Drawer, Affix, Modal, Button } from "antd";
 import Sidenav from "./Sidenav";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -30,6 +30,7 @@ function Main({ children }) {
       setPlacement("right");
     }
   }, [pathname]);
+  const [modal, shwModal] = useState(false)
 
   return (
     <Layout

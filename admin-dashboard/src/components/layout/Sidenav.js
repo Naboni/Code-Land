@@ -94,19 +94,45 @@ function Sidenav({ color }) {
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to="/tables">
+          <Link to="/questions">
             <span
               className="icon"
               style={{
-                background: page === "tables" ? color : "",
+                background: page === "questions" ? color : "",
               }}
             >
               {tables}
             </span>
-            <span className="label">Tables</span>
+            <span className="label">Questions</span>
           </Link>
         </Menu.Item>
-        <Menu.Item className="menu-item-header" key="5">
+        <Menu.Item key="2">
+          <Link to="/topics">
+            <span
+              className="icon"
+              style={{
+                background: page === "topics" ? color : "",
+              }}
+            >
+              {tables}
+            </span>
+            <span className="label">Topics</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to="/solutions">
+            <span
+              className="icon"
+              style={{
+                background: page === "solutions" ? color : "",
+              }}
+            >
+              {tables}
+            </span>
+            <span className="label">Solutions</span>
+          </Link>
+        </Menu.Item>
+        {/* <Menu.Item className="menu-item-header" key="5">
           Account Pages
         </Menu.Item>
         <Menu.Item key="6">
@@ -121,7 +147,7 @@ function Sidenav({ color }) {
             </span>
             <span className="label">Profile</span>
           </Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </>
   );
