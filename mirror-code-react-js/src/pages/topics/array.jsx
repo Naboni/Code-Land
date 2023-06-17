@@ -20,8 +20,19 @@ export default function Array() {
             the first element of the array (generally denoted by the name of the array).
           </p>
           <br />
-          <img src={'/assets/array.PNG'} width="100%" alt="logo" />
+          <img src={'/assets/array_1.PNG'} width="100%" alt="logo" />
           <br />
+          <h2>What are Data Structures?</h2>
+        <p>Data structure is a storage that is used to store and organize data. It is a way of arranging data on a computer so that it can be accessed and updated efficiently.
+
+Depending on your requirement and project, it is important to choose the right data structure for your project. For example, if you want to store data sequentially in the memory, then you can go for the Array data structure.
+<br/>
+<img src={'/assets/array.PNG'} width="70%" style={{margin : "0 auto",display : "block"}} alt="logo" />
+
+
+
+</p>
+        <br />
           <br />
           <br />
 
