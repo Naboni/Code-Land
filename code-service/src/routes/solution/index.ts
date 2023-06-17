@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 
-import { getSolution, getSolutions, getUserSolution, getUserSolutionForQuestion, postSolution, updateSolution } from '../../controllers/solution';
+import { deleteSolution, getSolution, getSolutions, getUserSolution, getUserSolutionForQuestion, postSolution, updateSolution } from '../../controllers/solution';
 
 const router = express.Router();
 
@@ -45,7 +45,7 @@ router.post('/solution', async (req: Request, res: Response) => {
       official
     });
   
-    res.json({ solution });
+    res.status(201).json({ solution });
   });
   
   router.put('/solution', async (req: Request, res: Response) => {
@@ -58,5 +58,13 @@ router.post('/solution', async (req: Request, res: Response) => {
   
     res.json({ solution });
   });
+
+router.delete('/solution/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  await deleteSolution(id);
+
+  res.status(204).send();
+});
 
 export { router as solutionRouter };

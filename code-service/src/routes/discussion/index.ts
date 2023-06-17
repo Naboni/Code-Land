@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 
-import { getDiscussions, getDiscussion, postDiscussion, updateDiscussion } from '../../controllers/discussion';
+import { getDiscussions, getDiscussion, postDiscussion, updateDiscussion, deleteDiscussion } from '../../controllers/discussion';
 
 const router = express.Router();
 
@@ -34,7 +34,7 @@ router.post('/discussion', async (req: Request, res: Response) => {
     questionId,
   });
 
-  res.json({ discussion });
+  res.status(201).json({ discussion });
 });
 
 router.put('/discussion', async (req: Request, res: Response) => {
@@ -53,6 +53,15 @@ router.put('/discussion', async (req: Request, res: Response) => {
   });
 
   res.json({ discussion });
+});
+
+
+router.delete('/discussion/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  await deleteDiscussion(id);
+
+  res.status(204).send();
 });
 
 export { router as discussionRouter };

@@ -24,7 +24,7 @@ You can think of the stack data structure as the pile of plates on top of anothe
 
         </p>
         <br />
-        <img src={'/assets/stack.PNG'} width="90%" height= "550px" alt="logo" />
+        <img src={'/assets/stack.PNG'} width="50%" style={{margin : "0 auto",display : "block"}} alt="logo" />
         <br />
         <p>
         Here, you can: <br/>
@@ -102,7 +102,7 @@ We can implement a stack in any programming language like C, C++, Java, Python o
           </Prism.Panel>
         </Prism.Tabs>
         <br/> <br/>    <br/>
-        <h1 style={{textAlign  : 'center'}}>You have successfully complited this topic!</h1>
+        <h1 style={{textAlign  : 'center'}}>You have successfully completed this topic!</h1>
         <br/><br/>
       </div>
     </CenterContent>

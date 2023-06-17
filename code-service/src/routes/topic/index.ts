@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 
-import { getTopicByUserSolution, getTopics, postTopic, updateTopic } from '../../controllers/topic';
+import { deleteTopic, getTopicByUserSolution, getTopics, postTopic, updateTopic } from '../../controllers/topic';
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.post('/topic', async (req: Request, res: Response) => {
     topic_type
   });
 
-  res.json({ topic });
+  res.status(201).json({ topic });
 });
 
 router.put('/topic', async (req: Request, res: Response) => {
@@ -39,6 +39,14 @@ router.put('/topic', async (req: Request, res: Response) => {
   });
 
   res.json({ topic });
+});
+
+router.delete('/topic/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  await deleteTopic(id);
+
+  res.status(204).send();
 });
 
 export { router as topicRouter };

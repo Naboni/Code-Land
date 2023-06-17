@@ -29,7 +29,7 @@ import Output from "./output";
 import { highlight, userColors } from "../../constants/theme";
 import { displayNotification } from "../../utils/displayNotification";
 
-export default function Editor({ socketRef, room, userName, codeRef }) {
+export default function Editor({ socketRef, room, userName, codeRef, optionRef }) {
   const [result, setResult] = useState({
     submittedAt: "Not submitted",
     executionTime: "0",
@@ -110,9 +110,10 @@ export default function Editor({ socketRef, room, userName, codeRef }) {
       setCodeExecuting(true);
       if (codeRef.current.trim().length === 0) throw new Error("No data provided");
       const payload = {
-        language: "py",
+        language: optionRef.current.value,
         code: codeRef.current,
       };
+
       // emit execute_code
       socketRef.current.emit("execute_code", { room, payload });
     } catch (_) {

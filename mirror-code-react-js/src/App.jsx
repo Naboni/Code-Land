@@ -47,6 +47,7 @@ function App() {
               <Route path="/topic-sorting" element={<Sorting />}></Route>
               <Route path="/topic-stack" element={<Stack />}></Route>
               <Route path="/topic-string" element={<Stringg />}></Route>
+              <Route path="/topic-recursion" element={<Recursion />}></Route>
               <Route path="/topic-tree" element={<Tree />}></Route>
               <Route path="/topic-backtracking" element={<BackTracking />}></Route>
               <Route path="/topic-topological%20sort" element={<TopologicalSorting />}></Route>

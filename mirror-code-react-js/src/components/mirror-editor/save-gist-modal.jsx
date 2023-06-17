@@ -21,7 +21,7 @@ export default function SaveGistModal({ codeRef, editorRef, isOpened, setIsOpene
     validateInputOnChange: true,
   });
 
-  const document = "'''\nQuestion prompt: " + "\n" + editorRef.current + "\n'''\n" + codeRef.current;
+  const document = "'''\nQuestion prompt:\n" + editorRef.current + "\n'''\n" + codeRef.current;
   const handleSubmit = (values) => {
     setIsSubmitting(true);
     saveGist({ ...values, language: "py", document: document })

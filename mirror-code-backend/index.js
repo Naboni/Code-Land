@@ -1,6 +1,7 @@
 const fs = require('fs');
 const moment = require('moment');
 const express = require('express');
+const axios = require('axios');
 
 // local imports
 const { generateFile } = require('./generateFile');
@@ -22,11 +23,6 @@ app.use(express.json());
 
 app.use(allowCrossDomain);
 
-app.get('/topics', async (req, res) => {
-  const topics = await getTopics();
-  return res.json(topics);
-});
-
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server, {
@@ -38,6 +34,11 @@ const io = require('socket.io')(server, {
 });
 
 const serverName = 'Mirror-Code';
+const languages = {
+  Cpp: ['cpp', '0'],
+  Python: ['python3', '0'],
+  Javascript: ['nodejs', '0'],
+};
 // runs when a new client connects
 io.on('connection', (socket) => {
   console.log('=================================');
@@ -57,30 +58,33 @@ io.on('connection', (socket) => {
   // Runs when user executes code
   socket.on('execute_code', async ({ room, payload }) => {
     const { language, code } = payload;
-    // get time stamp for code execution
-    const startDate = new Date();
-    const submittedAt = moment(startDate).toString();
-    let endDate;
-    let executionTime;
+
     // tell users in the room that code is being executed
     socket.to(room).emit('code_executing');
     // execute the code
     try {
-      const filePath = generateFile(language, code);
-      const output = await executePython(filePath);
-      fs.unlinkSync(filePath);
+      var program = {
+        script: code,
+        language: languages[language][0],
+        versionIndex: languages[language][1],
+        clientId: '731a1d8446e55977bb33306e2322f9cf',
+        clientSecret: '34b98d5f73e3ac7167674fcfc6a0cd00b8bb0501a174ff4113529e6d1df66abd',
+      };
 
-      endDate = new Date();
-      executionTime = moment(endDate).diff(submittedAt, 'millisecond', true);
+      const { data } = await axios.post('https://api.jdoodle.com/v1/execute', program);
+      const output = {
+        data: data.output,
+      };
+
       // return the result for every user in the room
-      io.to(room).emit('run_result', { submittedAt: moment(submittedAt).format('h:mm:ss a'), executionTime, output });
-      console.log({ submittedAt: moment(submittedAt).format('h:mm:ss a'), executionTime, output });
+      io.to(room).emit('run_result', { submittedAt: data.submittedAt ?? 'now', executionTime: data.executionTime ?? '1', output });
+      console.log({ submittedAt: data.submittedAt, executionTime: data.executionTime, output });
     } catch (_) {
       console.log(_);
       io.to(room).emit('run_result', {
-        submittedAt: moment(submittedAt).format('h:mm:ss a'),
-        executionTime: executionTime ?? '>1000',
-        output: { data: 'stdout maxBuffer length exceeded. Maybe there is a long running loop in your code?', stderr: true },
+        submittedAt: moment(new Date()).format('h:mm:ss a'),
+        executionTime: '>1000',
+        output: { data: 'Something went wrong!', stderr: true },
       });
     }
   });

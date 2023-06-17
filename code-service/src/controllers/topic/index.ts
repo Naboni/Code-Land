@@ -36,3 +36,9 @@ export async function updateTopic(topic: Omit<Topic, 'createdAt'>) {
     data: topic,
   });
 }
+
+export async function deleteTopic(id: string) {
+  return await prismaClient.topic.delete({
+    where: { id },
+  });
+}

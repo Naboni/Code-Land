@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: code-mirror.dev
+      http:
+        paths:
+          - path: /api/code-service/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: code-service-srv
+                port:
+                  number: 3000
+
+          - path: /api/y-websocket/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: y-websocket-srv
+                port:
+                  number: 3000
+
+          - path: /api/mirror-code-back/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mirror-code-back-srv
+                port:
+                  number: 3000
+                  
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mirror-code-front-srv
+                port:
+                  number: 3000

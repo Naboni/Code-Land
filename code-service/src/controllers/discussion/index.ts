@@ -32,3 +32,9 @@ export async function updateDiscussion(discussion: Omit<Discussion, 'createdAt'>
     data: discussion,
   });
 }
+
+export async function deleteDiscussion(id: string) {
+  return await prismaClient.discussion.delete({
+    where: { id },
+  });
+}

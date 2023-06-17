@@ -2,7 +2,7 @@ import React from "react";
 
 import { Prism } from "@mantine/prism";
 
-import { js, python, cpp } from "../../constants/topics/stack";
+import { js, python, cpp } from "../../constants/topics/string";
 
 import SimpleNav from "../../components/simple-nav";
 import CenterContent from "../../components/center-content";
@@ -42,67 +42,51 @@ function Stringg() {
                 </ul>
             </p>
         </li>
-        <li>Algorithms:</li>
-        <li>Applications:</li>
+        <li>Algorithms:
+        <p>
+                <ul>
+                    <li>Knuth-Morris-Pratt (KMP) algorithm for pattern matching</li>
+                    <li>Rabin-Karp algorithm for pattern matching</li>
+                    <li>Z algorithm for pattern matching</li>
+                    <li>Manacher’s algorithm for finding the longest palindromic substring
+</li>
+                    <li>Suffix Array and Suffix Tree for string processing tasks</li>
+                
+                </ul>
+            </p>
+        </li>
+        <li>Applications:
+        <p>
+
+
+
+
+                <ul>
+                    <li>Text processing</li>
+                    <li>URL parsing</li>
+                    <li>Storing and manipulating human-readable data.</li>
+
+                
+                </ul>
+            </p>
+        </li>
     </ol>
     
             </p>
             <br />
-            <img src={'/assets/stack.PNG'} width="90%" height= "550px" alt="logo" />
-            <br />
+            <h2>What is String?
+    </h2>
             <p>
-            Here, you can: <br/>
-            <ul>
-              <li>
-              Put a new plate on top
-              </li>
-              <li>Remove the top plate</li>
-            </ul>
-    And, if you want the plate at the bottom, you must first remove all the plates on top. This is exactly how the stack data structure works.
+            Strings are considered a data type in general and are typically represented as arrays of bytes (or words) that store a sequence of characters. Strings are defined as an array of characters. The difference between a character array and a string is the string is terminated with a special character ‘\0’
             </p>
             <br />
-            <hr></hr>
-            <h2>LIFO Principle of Stack</h2>
-            <p>In programming terms, putting an item on top of the stack is called <strong>push</strong>  and removing an item is called <strong>pop</strong>.
-    
-    </p>
-            <br />
-            <div style={{backgroundColor : 'white'}}>
-            <img src={'/assets/stack2.PNG'} width="100%" alt="logo" />
-            </div>
-            <br/>
-           <p>In the above image, although item 3 was kept last, it was removed first. This is exactly how the <strong>LIFO (Last In First Out)</strong>  Principle works.
-    <br/><br/>
-    We can implement a stack in any programming language like C, C++, Java, Python or C#, but the specification is pretty much the same.</p>
-            <br/>
-            <h2>Basic Operations of Stack
+            <img src={'/assets/string.PNG'} width="100%" alt="logo" />
+            <h2>How String is represented in Memory?
     </h2>
-            <p>There are some basic operations that allow us to perform different actions on a stack.
-              <ul>
-                <li>Push: Add an element to the top of a stack</li>
-                <li>Pop: Remove an element from the top of a stack</li>
-                <li>IsEmpty: Check if the stack is empty</li>
-                <li>IsFull: Check if the stack is full</li>
-                <li>Peek: Get the value of the top element without removing it
-    
-    </li>
-              </ul>
+            <p>
+            In C, a string can be referred to either using a character pointer or as a character array. When strings are declared as character arrays, they are stored like other types of arrays in C. For example, if str[] is an auto variable then the string is stored in the stack segment, if it’s a global or static variable then stored in the data segment, etc.
             </p>
-            <br/>
-            <h2>Working of Stack Data Structure
-    </h2>
-    <p>The operations work as follows:
-              <ol>
-                <li>A pointer called TOP is used to keep track of the top element in the stack.</li>
-                <li>When initializing the stack, we set its value to -1 so that we can check if the stack is empty by comparing TOP == -1.</li>
-                <li>On pushing an element, we increase the value of TOP and place the new element in the position pointed to by TOP.</li>
-                <li>On popping an element, we return the element pointed to by TOP and reduce its value.</li>
-                <li>Before pushing, we check if the stack is already full
-    
-    </li>
-    <li>Before popping, we check if the stack is already empty</li>
-              </ol>
-            </p>
+            
             <br/>
             <h2>Stack Implementations in Python, Java, C, and C++
     </h2>

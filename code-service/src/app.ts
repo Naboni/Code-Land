@@ -11,7 +11,7 @@ import { discussionRouter } from './routes/discussion';
 import { solutionRouter } from './routes/solution';
 import { favoriteRouter } from './routes/favorite';
 
-const app = express();
+export const app = express();
 
 app.set('trust proxy', true);
 app.use(express.json());
@@ -31,5 +31,3 @@ app.all('*', async (req, res) => {
 });
 
 app.use(errorHandler);
-
-export { app };
